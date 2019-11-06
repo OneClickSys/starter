@@ -4,7 +4,7 @@
         <el-row>
             <!--在header中显示logo-->
             <el-col :span="10" class="logo" :class="isCollapse?'logo-collapse-width':'logo-width'">
-                {{isCollapse?'':sysName}}
+                {{isCollapse?sysShortName:sysName}}
             </el-col>
 
             <!--在header中显示头像-->
@@ -14,7 +14,7 @@
         </el-row>
     </el-header>
     <el-container>
-        <el-aside width="230px">
+        <el-aside :width="isCollapse?'61px':'231px'">
             <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
                 <el-submenu index="1">
                     <template slot="title">
@@ -57,8 +57,9 @@
 export default {
     data() {
         return {
-            isCollapse: false,
-            sysName: 'OCSL'
+            isCollapse: true,
+            sysName: 'OCSL',
+            sysShortName: 'OC'
         };
     },
     methods: {
@@ -79,6 +80,8 @@ export default {
     color: #333;
     text-align: center;
     line-height: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .el-aside {
@@ -99,18 +102,14 @@ body>.el-container {
     margin-bottom: 40px;
 }
 
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-}
-
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 230px;
-    min-height: 400px;
+    min-height: 500px;
+}
+
+.el-menu-vertical-demo {
+    width: 60px;
+    min-height: 500px;
 }
 
 .logo {
@@ -122,10 +121,11 @@ body>.el-container {
     border-right-width: 1px;
     border-right-style: solid;
     color: #ffffff;
+    text-align: center;
 }
 
 .logo-width {
-    width: 210px;
+    width: 230px;
 }
 
 .logo-collapse-width {
