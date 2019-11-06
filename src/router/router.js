@@ -2,11 +2,13 @@ import Vue from "vue";
 import VueRouter from 'vue-router'
 
 import Blank from '../views/blank.vue'
+import Home from '../views/Home.vue'
 
 Vue.use(VueRouter);
 
 const constantRoutes = [
-    { path: "/", component: Blank }
+    { path: "/", component: Blank },
+    {path: "/layout", component: Home}
 ];
 
 // 创建 router 实例，然后传 `routes` 配置
