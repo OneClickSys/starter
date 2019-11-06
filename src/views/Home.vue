@@ -3,13 +3,17 @@
     <el-header>
         <el-row>
             <!--在header中显示logo-->
-            <el-col :span="10" class="logo" :class="isCollapse?'logo-collapse-width':'logo-width'">
+            <el-col :span="8" class="logo" :class="isCollapse?'logo-collapse-width':'logo-width'">
                 {{isCollapse?sysShortName:sysName}}
             </el-col>
 
+            <el-col :span="8" class="collapse-btn">
+                <i class="el-icon-s-operation" @click.prevent="collapse"></i>
+            </el-col>
+
             <!--在header中显示头像-->
-            <el-col :span="12">
-                <div class="grid-content bg-purple-light">BBB</div>
+            <el-col :span="8" style="background-color: red;">
+                <div>AAA</div>
             </el-col>
         </el-row>
     </el-header>
@@ -57,9 +61,10 @@
 export default {
     data() {
         return {
-            isCollapse: true,
+            isCollapse: false,
             sysName: 'OCSL',
-            sysShortName: 'OC'
+            sysShortName: 'OC',
+            avatar: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
         };
     },
     methods: {
@@ -68,6 +73,10 @@ export default {
         },
         handleClose(key, keyPath) {
             console.log(key, keyPath);
+        },
+        //折叠导航栏
+        collapse: function () {
+            this.isCollapse = !this.isCollapse;
         }
     }
 }
@@ -131,4 +140,12 @@ body>.el-container {
 .logo-collapse-width {
     width: 60px;
 }
+
+.collapse-btn {
+    text-align: left;
+    color: #ffffff;
+    font-size: 22px;
+    padding-left: 10px;
+}
+
 </style>
