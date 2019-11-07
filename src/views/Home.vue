@@ -1,21 +1,24 @@
 <template>
 <el-container>
     <el-header>
-        <el-row>
+        <el-container>
             <!--在header中显示logo-->
-            <el-col :span="8" class="logo" :class="isCollapse?'logo-collapse-width':'logo-width'">
+            <div class="logo" :class="isCollapse?'logo-collapse-width':'logo-width'">
                 {{isCollapse?sysShortName:sysName}}
-            </el-col>
+            </div>
+            <el-container style="height: 60px;">
+                    <div class="collapse-btn" style="width: 10%;">
+                        <i :class="isCollapse?'el-icon-s-unfold':'el-icon-s-fold'" @click.prevent="collapse"></i>
+                    </div>
 
-            <el-col :span="8" class="collapse-btn">
-                <i class="el-icon-s-operation" @click.prevent="collapse"></i>
-            </el-col>
-
-            <!--在header中显示头像-->
-            <el-col :span="8" style="background-color: red;">
-                <div>AAA</div>
-            </el-col>
-        </el-row>
+                    <!--在header中显示头像-->
+                    <div style="width: 90%; text-align: right; padding-right: 30px;height: 60px;">
+                        <el-avatar :size="50" src="" style="vertical-align:middle;">
+                            <img :src="userAvatar"/>
+                        </el-avatar>
+                    </div>
+            </el-container>
+        </el-container>
     </el-header>
     <el-container>
         <el-aside :width="isCollapse?'61px':'231px'">
@@ -64,7 +67,7 @@ export default {
             isCollapse: false,
             sysName: 'OCSL',
             sysShortName: 'OC',
-            avatar: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+            userAvatar: require('../assets/user.jpeg')
         };
     },
     methods: {
@@ -113,19 +116,17 @@ body>.el-container {
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 230px;
-    min-height: 500px;
+    min-height: 600px;
 }
 
 .el-menu-vertical-demo {
     width: 60px;
-    min-height: 500px;
+    min-height: 600px;
 }
 
 .logo {
     height: 60px;
     font-size: 22px;
-    padding-left: 20px;
-    padding-right: 20px;
     border-color: rgba(238, 241, 146, 0.3);
     border-right-width: 1px;
     border-right-style: solid;
@@ -144,8 +145,7 @@ body>.el-container {
 .collapse-btn {
     text-align: left;
     color: #ffffff;
-    font-size: 22px;
+    font-size: 20px;
     padding-left: 10px;
 }
-
 </style>
