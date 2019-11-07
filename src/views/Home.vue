@@ -27,6 +27,7 @@
         </el-container>
     </el-header>
     <el-container>
+        <!--侧边栏菜单-->
         <el-aside :width="isCollapse?'61px':'231px'">
             <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :collapse-transition="isCollapseTransaction" :background-color="asideColor">
                 <el-submenu index="1">
@@ -61,6 +62,7 @@
                 </el-menu-item>
             </el-menu>
         </el-aside>
+        <!--主要内容-->
         <el-main>
             <div>
                 <el-breadcrumb separator="/">
