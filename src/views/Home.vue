@@ -7,22 +7,28 @@
                 {{isCollapse?sysShortName:sysName}}
             </div>
             <el-container style="height: 60px;">
-                    <div class="collapse-btn" style="width: 10%;">
-                        <i :class="isCollapse?'el-icon-s-unfold':'el-icon-s-fold'" @click.prevent="collapse"></i>
-                    </div>
+                <div class="collapse-btn" style="width: 10%;">
+                    <i :class="isCollapse?'el-icon-s-unfold':'el-icon-s-fold'" @click.prevent="collapse"></i>
+                </div>
 
-                    <!--在header中显示头像-->
-                    <div style="width: 90%; text-align: right; padding-right: 30px;height: 60px;">
+                <!--在header中显示头像-->
+                <div style="width: 90%; text-align: right; padding-right: 30px;height: 60px;">
+                    <el-dropdown>
                         <el-avatar :size="50" src="" style="vertical-align:middle;">
-                            <img :src="userAvatar"/>
+                            <img :src="userAvatar" />
                         </el-avatar>
-                    </div>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item>退出登录</el-dropdown-item>
+                            <el-dropdown-item>关于</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </div>
             </el-container>
         </el-container>
     </el-header>
     <el-container>
         <el-aside :width="isCollapse?'61px':'231px'">
-            <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+            <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :collapse-transition="isCollapseTransaction" :background-color="asideColor">
                 <el-submenu index="1">
                     <template slot="title">
                         <i class="el-icon-location"></i>
@@ -55,7 +61,17 @@
                 </el-menu-item>
             </el-menu>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main>
+            <div>
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                    <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
+                    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                </el-breadcrumb>
+            </div>
+            Main
+        </el-main>
     </el-container>
 </el-container>
 </template>
@@ -65,6 +81,8 @@ export default {
     data() {
         return {
             isCollapse: false,
+            isCollapseTransaction: false,
+            asideColor: '#EBEEF5',
             sysName: 'OCSL',
             sysShortName: 'OC',
             userAvatar: require('../assets/user.jpeg')
@@ -104,7 +122,7 @@ export default {
 }
 
 .el-main {
-    background-color: #E9EEF3;
+    background-color: #ffffff;
     color: #333;
     text-align: center;
     line-height: 160px;
