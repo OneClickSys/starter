@@ -16,8 +16,8 @@ const constantRoutes = [
         name: '嵌套菜单',
         iconCls: 'el-icon-location',
         children: [
-            { path: '/page4', iconCls: 'el-icon-s-custom', component: Blank, name: '子菜单1' },
-            { path: '/page5', iconCls: 'el-icon-s-custom', component: Blank, name: '子菜单2' }
+            { path: 'page4', iconCls: 'el-icon-s-custom', component: Blank, name: '子菜单1' },
+            { path: 'page5', iconCls: 'el-icon-s-custom', component: Blank, name: '子菜单2' }
         ]
     },
     {
@@ -26,7 +26,7 @@ const constantRoutes = [
         name: '',   // 表示没有子菜单，必须有一个child
         iconCls: 'el-icon-document',
         children: [
-            { path: '/page6', component: Blank, name: '单一导航' }
+            { path: 'page6', component: Blank, name: '单一导航' }
         ]
     },
 ];

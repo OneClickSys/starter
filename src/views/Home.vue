@@ -29,25 +29,25 @@
     <el-container>
         <!--侧边栏菜单-->
         <el-aside :width="isCollapse?'61px':'231px'">
-            <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :collapse-transition="isCollapseTransaction" :background-color="asideColor">
+            <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :collapse-transition="isCollapseTransaction" :background-color="asideColor" router>
                 <template v-for="(item,index) in allRoutes">
 
                     <!--不带子菜单-->
                     <template v-if="item.name===''">
-                        <el-menu-item :index="index+'-'" :key="index+'-'">
+                        <el-menu-item :index="item.path+item.children[0].path" :key="index+'-'">
                             <i :class="item.iconCls"></i>
                             <span slot="title">{{ item.children[0].name }}</span>
                         </el-menu-item>
                     </template>
                     <!--带有子菜单-->
                     <template v-else>
-                        <el-submenu :index="index" :key="index">
+                        <el-submenu :index="index+'-'" :key="index+'-'">
                             <template slot="title">
                                 <i :class="item.iconCls"></i>
                                 <span slot="title">{{ item.name }}</span>
                             </template>
                             <template v-for="(child,subidx) in item.children">
-                                <el-menu-item :index="index+'-'+subidx" :key="index+'-'+subidx">
+                                <el-menu-item :index="item.path+child.path" :key="index+'-'+subidx">
                                     <i :class="child.iconCls"></i>
                                     <span slot="title">{{ child.name }}</span>
                                 </el-menu-item>
