@@ -30,36 +30,33 @@
         <!--侧边栏菜单-->
         <el-aside :width="isCollapse?'61px':'231px'">
             <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :collapse-transition="isCollapseTransaction" :background-color="asideColor">
-                <el-submenu index="1">
-                    <template slot="title">
-                        <i class="el-icon-location"></i>
-                        <span slot="title">导航一</span>
+                <template v-for="(item,index) in allRoutes">
+
+                    <!--不带子菜单-->
+                    <template v-if="item.name===''">
+                        <el-menu-item :index="index+'-'" :key="index+'-'">
+                            <i :class="item.iconCls"></i>
+                            <span slot="title">{{ item.children[0].name }}</span>
+                        </el-menu-item>
                     </template>
-                    <el-menu-item-group>
-                        <span slot="title">分组一</span>
-                        <el-menu-item index="1-1">选项1</el-menu-item>
-                        <el-menu-item index="1-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                    <el-menu-item-group title="分组2">
-                        <el-menu-item index="1-3">选项3</el-menu-item>
-                    </el-menu-item-group>
-                    <el-submenu index="1-4">
-                        <span slot="title">选项4</span>
-                        <el-menu-item index="1-4-1">选项1</el-menu-item>
-                    </el-submenu>
-                </el-submenu>
-                <el-menu-item index="2">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">导航二</span>
-                </el-menu-item>
-                <el-menu-item index="3" disabled>
-                    <i class="el-icon-document"></i>
-                    <span slot="title">导航三</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">导航四</span>
-                </el-menu-item>
+                    <!--带有子菜单-->
+                    <template v-else>
+                        <el-submenu :index="index" :key="index">
+                            <template slot="title">
+                                <i :class="item.iconCls"></i>
+                                <span slot="title">{{ item.name }}</span>
+                            </template>
+                            <template v-for="(child,subidx) in item.children">
+                                <el-menu-item :index="index+'-'+subidx" :key="index+'-'+subidx">
+                                    <i :class="child.iconCls"></i>
+                                    <span slot="title">{{ child.name }}</span>
+                                </el-menu-item>
+                            </template>
+
+                        </el-submenu>
+                    </template>
+                </template>
+
             </el-menu>
         </el-aside>
         <!--主要内容-->
@@ -72,7 +69,7 @@
                     <el-breadcrumb-item>活动详情</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
-            Main
+            <router-view></router-view>
         </el-main>
     </el-container>
 </el-container>
@@ -100,6 +97,11 @@ export default {
         //折叠导航栏
         collapse: function () {
             this.isCollapse = !this.isCollapse;
+        }
+    },
+    computed: {
+        allRoutes: function () {
+            return this.$router.options.routes.filter(item => !item.hidden);
         }
     }
 }
