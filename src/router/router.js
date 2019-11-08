@@ -14,6 +14,7 @@ const constantRoutes = [
         path: '/',
         component: Home,
         name: '嵌套菜单',
+        hidden: true,
         iconCls: 'el-icon-location',
         children: [
             { path: 'page4', iconCls: 'el-icon-s-custom', component: Blank, name: '子菜单1' },
@@ -24,9 +25,57 @@ const constantRoutes = [
         path: '/',
         component: Home,
         name: '',   // 表示没有子菜单，必须有一个child
+        hidden: true,
         iconCls: 'el-icon-document',
         children: [
             { path: 'page6', component: Blank, name: '单一导航' }
+        ]
+    },
+
+    // 项目导航菜单
+    {
+        path: '/',
+        component: Home,
+        name: '',   // 表示没有子菜单，必须有一个child
+        iconCls: 'el-icon-user',
+        children: [
+            { path: 'employeelist', component: Blank, name: '员工列表' }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '',   // 表示没有子菜单，必须有一个child
+        iconCls: 'el-icon-circle-plus-outline',
+        children: [
+            { path: 'addemployee', component: Blank, name: '添加员工' }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '',   // 表示没有子菜单，必须有一个child
+        iconCls: 'el-icon-date',
+        children: [
+            { path: 'employeedate', component: Blank, name: '员工考勤' }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '',   // 表示没有子菜单，必须有一个child
+        iconCls: 'el-icon-coin',
+        children: [
+            { path: 'compensation', component: Blank, name: '员工工资' }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '',   // 表示没有子菜单，必须有一个child
+        iconCls: 'el-icon-pie-chart',
+        children: [
+            { path: 'compensation', component: Blank, name: '社保福利' }
         ]
     },
 ];

@@ -61,14 +61,8 @@
         </el-aside>
         <!--主要内容-->
         <el-main>
-            <div>
-                <el-breadcrumb separator="/">
-                    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-                    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-                    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-                </el-breadcrumb>
-            </div>
+            <!-- 面包屑导航 -->
+            <!-- 主内容 -->
             <router-view></router-view>
         </el-main>
     </el-container>
@@ -123,6 +117,10 @@ export default {
     color: #333;
     text-align: left;
     line-height: 230px;
+}
+
+.el-menu-item {
+    height: 50px;
 }
 
 .el-main {
