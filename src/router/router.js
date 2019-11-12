@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from 'vue-router'
 
-import Blank from '../views/blank.vue'
-import Home from '../views/Home.vue'
+import Blank from '@/views/blank.vue'
+import Home from '@/views/Home.vue'
+import Login from '@/views/Login.vue'
 
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
@@ -14,6 +15,8 @@ Vue.use(VueRouter);
 const constantRoutes = [
     { path: "/", hidden: true, component: Blank },
     { path: "/layout", hidden: true, component: Home },
+
+    { path: "/login", hidden: true, component: Login },
 
     {
         path: '/',
