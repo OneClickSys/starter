@@ -18,7 +18,7 @@
                             <img :src="userAvatar" />
                         </el-avatar>
                         <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item>退出登录</el-dropdown-item>
+                            <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
                             <el-dropdown-item>关于</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
@@ -91,6 +91,9 @@ export default {
         //折叠导航栏
         collapse: function () {
             this.isCollapse = !this.isCollapse;
+        },
+        logout: function () {
+            this.$router.push('/login');
         }
     },
     computed: {

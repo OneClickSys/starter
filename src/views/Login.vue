@@ -36,6 +36,7 @@ export default {
     methods: {
         onSubmit() {
             console.log('submit!');
+            this.$router.push('/layout');
         }
     }
 }
