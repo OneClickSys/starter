@@ -12,7 +12,8 @@
                 </div>
 
                 <!--在header中显示头像-->
-                <div style="width: 90%; text-align: right; padding-right: 30px;height: 60px;">
+                <div style="width: 90%; text-align: right; padding-right: 30px;height: 60px;display: flex; justify-content: flex-end;">
+                    <div class="user-name">admin</div>
                     <el-dropdown>
                         <el-avatar :size="50" src="" style="vertical-align:middle;">
                             <img :src="userAvatar" />
@@ -170,5 +171,12 @@ body>.el-container {
     color: #ffffff;
     font-size: 20px;
     padding-left: 10px;
+}
+
+.user-name {
+    color: #ffffff;
+    font-size: 18px;
+    padding-right: 10px;
+    margin-top: 10px;
 }
 </style>
