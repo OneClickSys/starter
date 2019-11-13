@@ -42,48 +42,51 @@ const constantRoutes = [
 
     // 项目导航菜单
     {
-        path: '/',
+        path: '/dashboard',
         component: Home,
         name: '',   // 表示没有子菜单，必须有一个child
-        iconCls: 'el-icon-user',
+        iconCls: 'el-icon-s-data',
         children: [
-            { path: 'employeelist', component: Blank, name: '员工列表' }
+            { path: '', component: Blank, name: '综合预览' }
         ]
     },
     {
-        path: '/',
+        path: '/org',
         component: Home,
         name: '',   // 表示没有子菜单，必须有一个child
-        iconCls: 'el-icon-circle-plus-outline',
+        iconCls: 'el-icon-menu',
         children: [
-            { path: 'addemployee', component: Blank, name: '添加员工' }
+            { path: '', component: Blank, name: '组织结构' }
         ]
     },
     {
-        path: '/',
+        path: '/employees',
         component: Home,
-        name: '',   // 表示没有子菜单，必须有一个child
+        name: '人员管理',
+        iconCls: 'el-icon-user-solid',
+        children: [
+            { path: 'list', iconCls: 'el-icon-user', component: Blank, name: '员工列表' },
+            { path: 'add', iconCls: 'el-icon-circle-plus-outline', component: Blank, name: '添加员工' }
+        ]
+    },
+    {
+        path: '/time',
+        component: Home,
+        name: '工作日历',
         iconCls: 'el-icon-date',
         children: [
-            { path: 'employeedate', component: Blank, name: '员工考勤' }
+            { path: 'leave', iconCls: 'el-icon-folder-delete', component: Blank, name: '请假调休' },
+            { path: 'show', iconCls: 'el-icon-reading', component: Blank, name: '员工考勤' }
         ]
     },
     {
-        path: '/',
+        path: '/benifit',
         component: Home,
-        name: '',   // 表示没有子菜单，必须有一个child
+        name: '薪酬福利',
         iconCls: 'el-icon-coin',
         children: [
-            { path: 'compensation', component: Blank, name: '员工工资' }
-        ]
-    },
-    {
-        path: '/',
-        component: Home,
-        name: '',   // 表示没有子菜单，必须有一个child
-        iconCls: 'el-icon-pie-chart',
-        children: [
-            { path: 'compensation', component: Blank, name: '社保福利' }
+            { path: 'shebao', iconCls: 'el-icon-goods', component: Blank, name: '社保' },
+            { path: 'gjj', iconCls: 'el-icon-present', component: Blank, name: '公积金' }
         ]
     },
 ];

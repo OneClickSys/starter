@@ -48,7 +48,7 @@
                                 <span slot="title">{{ item.name }}</span>
                             </template>
                             <template v-for="(child,subidx) in item.children">
-                                <el-menu-item :index="item.path+child.path" :key="index+'-'+subidx">
+                                <el-menu-item :index="item.path+'/'+child.path" :key="index+'-'+subidx">
                                     <i :class="child.iconCls"></i>
                                     <span slot="title">{{ child.name }}</span>
                                 </el-menu-item>
@@ -64,7 +64,9 @@
         <el-main>
             <!-- 面包屑导航 -->
             <!-- 主内容 -->
-            <router-view></router-view>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </el-main>
     </el-container>
 </el-container>
