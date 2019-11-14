@@ -4,6 +4,7 @@ import './plugins/element.js'
 import router from './router/router'
 import axios from '@/axios/axios'
 import store from '@/store/store.js'
+import '@/fas/fas'
 
 process.env.NODE_ENV != 'production' && require('./mock/mock.js')
 
