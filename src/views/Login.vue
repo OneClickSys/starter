@@ -5,10 +5,10 @@
             <div class="banner">系统登录</div>
             <el-form ref="form" :model="form">
                 <el-form-item>
-                    <el-input v-model="form.name" suffix-icon="el-icon-user"></el-input>
+                    <el-input v-model="form.name" auto-complete="off" placeholder="账号" suffix-icon="el-icon-user"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-input v-model="form.password" show-password></el-input>
+                    <el-input v-model="form.password" auto-complete="off" placeholder="密码" show-password></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-checkbox v-model="form.checked">记住密码</el-checkbox>
@@ -23,6 +23,14 @@
 </template>
 
 <script>
+import {
+    checkLogin
+} from "@/api/user"
+
+import {
+    setCookieUser
+} from '@/utils/util'
+
 export default {
     data() {
         return {
@@ -36,7 +44,12 @@ export default {
     methods: {
         onSubmit() {
             console.log('submit!');
-            this.$router.push('/dashboard');
+            console.log(this.form.name, this.form.password);
+            checkLogin(this.form.name, this.form.password).then(res => {
+                console.log(res);
+                setCookieUser(res);
+                this.$router.push('/dashboard');
+            });
         }
     }
 }

@@ -1,7 +1,8 @@
 import axios from '@/axios/axios'
 
-export const getUserInfo = async (token) => {
-    const res = await axios.get('/get_info');
-    console.log(token);
+export const checkLogin = async (name, passwd) => {
+    const res = await axios.post('/login', {name: name, passwd: passwd});
     console.log(res.data);
+    return res.data;
 }
+

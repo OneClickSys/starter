@@ -13,7 +13,7 @@
 
                 <!--在header中显示头像-->
                 <div style="width: 90%; text-align: right; padding-right: 30px;height: 60px;display: flex; justify-content: flex-end;">
-                    <div class="user-name">admin</div>
+                    <div class="user-name">{{ userName }}</div>
                     <el-dropdown>
                         <el-avatar :size="50" src="" style="vertical-align:middle;">
                             <img :src="userAvatar" />
@@ -73,6 +73,11 @@
 </template>
 
 <script>
+import {
+    getCookieUser,
+    removeCookieUser
+} from '@/utils/util'
+
 export default {
     data() {
         return {
@@ -81,7 +86,8 @@ export default {
             asideColor: '#EBEEF5',
             sysName: 'OCSL',
             sysShortName: 'OC',
-            userAvatar: require('../assets/user.jpeg')
+            userAvatar: require('../assets/user.jpeg'),
+            userName: getCookieUser().name
         };
     },
     methods: {
@@ -96,6 +102,7 @@ export default {
             this.isCollapse = !this.isCollapse;
         },
         logout: function () {
+            removeCookieUser();
             this.$router.push('/login');
         }
     },

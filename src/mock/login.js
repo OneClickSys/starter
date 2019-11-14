@@ -1,11 +1,6 @@
 
-
-export const getUserInfo = req => {
-    console.log(req)
-    return {
-        name: 'admin',
-        user_id: '2',
-        access: ['admin'],
-        token: 'admin'
-    }
+export const login = req => {
+    console.log(req);
+    return {'user_id': '2', 'name': 'super', 'token': 'user-token'};
 }
+
