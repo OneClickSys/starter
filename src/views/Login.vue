@@ -1,5 +1,7 @@
 <template>
-<el-container>
+<el-container direction="vertical">
+    <el-alert title="用户不存在或密码错误" type="error" show-icon v-if="loginFailed" @close="alertClose">
+    </el-alert>
     <div style="margin: auto;padding: 8%;">
         <el-card class="box-card">
             <div class="banner">系统登录</div>
@@ -38,7 +40,8 @@ export default {
                 name: 'admin',
                 password: 'passwd',
                 checked: true
-            }
+            },
+            loginFailed: false
         }
     },
     methods: {
@@ -47,9 +50,17 @@ export default {
             console.log(this.form.name, this.form.password);
             checkLogin(this.form.name, this.form.password).then(res => {
                 console.log(res);
-                setCookieUser(res);
-                this.$router.push('/dashboard');
+                if (!res.hasOwnProperty('token')) {
+                    console.log(res)
+                    this.loginFailed = true;
+                } else {
+                    setCookieUser(res);
+                    this.$router.push('/dashboard');
+                }
             });
+        },
+        alertClose() {
+            this.loginFailed = false;
         }
     }
 }
