@@ -89,6 +89,15 @@ const constantRoutes = [
             { path: 'gjj', iconCls: 'el-icon-present', component: Blank, name: '公积金' }
         ]
     },
+    {
+        path: '/talents',
+        component: Home,
+        name: '',   // 表示没有子菜单，必须有一个child
+        iconCls: 'el-icon-school',
+        children: [
+            { path: '', component: Blank, name: '人才中心' }
+        ]
+    },
 ];
 
 // 创建 router 实例，然后传 `routes` 配置
